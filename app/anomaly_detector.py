@@ -1,16 +1,19 @@
-import argparse
-import numpy as np
-import pandas as pd
-from datetime import datetime
-import pickle
 import os
-import csv
-import json
-from tensorflow.keras.models import load_model
-from flask import Flask, request, jsonify, send_file
-import tempfile
-import io
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+
 import werkzeug.utils
+import io
+import tempfile
+from flask import Flask, request, jsonify, send_file
+from tensorflow.keras.models import load_model
+import json
+import csv
+import pickle
+from datetime import datetime
+import argparse
+import pandas as pd
+import numpy as np
 
 # Initialize Flask app
 app = Flask(__name__)
