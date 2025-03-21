@@ -1,4 +1,3 @@
 {
-  "ansible.python.interpreterPath": "",
-  "python.defaultInterpreterPath": "/Users/irvansn/Documents/itts/TUGAS_AKHIR/ta-anomaly-detection/.venv/bin/python"
+  "python.defaultInterpreterPath": "/Users/irvansn/Documents/itts/TUGAS_AKHIR/ta-anomaly-detection/.venv/ta-ad/bin/python"
 }

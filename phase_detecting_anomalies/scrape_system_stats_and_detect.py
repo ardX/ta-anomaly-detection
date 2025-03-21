@@ -1,6 +1,6 @@
 import psutil
 import datetime
-import requests  # pip install requests
+import requests
 import time
 import os
 import json
@@ -9,8 +9,9 @@ import io
 
 # Configuration
 NGINX_STATUS_URL = "http://127.0.0.1/stub_status"
-OUTPUT_FILE = "/etc/zabbix/templates/host_anomaly_detection/data/system_stats.csv"
-STATE_FILE = "/etc/zabbix/templates/host_anomaly_detection/data/.nginx_requests_state.json"  # To store last requests count & timestamp
+OUTPUT_FILE = "/etc/zabbix/templates/host_anomaly_detection/data/system_stats_new.csv"
+STATE_FILE = "/etc/zabbix/templates/host_anomaly_detection/data/.nginx_requests_state.json"
+ANOMALY_API_URL = "http://176.96.138.228:5000/detect"
 
 def get_system_usage():
     """
@@ -134,6 +135,28 @@ def compute_requests_per_second(current_requests):
 
     return rps
 
+def check_anomaly(csv_row):
+    """
+    Calls the anomaly detection API with the CSV row data.
+    Returns True if an anomaly is detected, False otherwise.
+    If the API call fails, returns None.
+    """
+    try:
+        response = requests.post(
+            ANOMALY_API_URL, 
+            json={"csv_row": csv_row},
+            timeout=5
+        )
+        response.raise_for_status()
+        result = response.json()
+        return result.get('is_anomaly', False)
+    except requests.RequestException as e:
+        print(f"Error calling anomaly detection API: {e}")
+        return None
+    except json.JSONDecodeError:
+        print("Error parsing API response")
+        return None
+
 def main():
     # 1. Get overall system usage.
     cpu_usage, mem_usage = get_system_usage()
@@ -185,13 +208,26 @@ def main():
     output = io.StringIO()
     csv_writer = csv.writer(output, delimiter=";", quoting=csv.QUOTE_MINIMAL)
     csv_writer.writerow(row_items)
-    csv_line = output.getvalue()
+    csv_line = output.getvalue().strip()
     output.close()
 
+    # Check for anomaly
+    is_anomaly = check_anomaly(csv_line)
+    
+    # Add anomaly result to the row data
+    row_items.append("1" if is_anomaly else "0")
+    
+    # Create the final CSV line with anomaly result
+    final_output = io.StringIO()
+    csv_writer = csv.writer(final_output, delimiter=";", quoting=csv.QUOTE_MINIMAL)
+    csv_writer.writerow(row_items)
+    final_csv_line = final_output.getvalue()
+    final_output.close()
+
     # Print the CSV line to the console and append it to the output file.
-    print(csv_line, end="")
+    print(final_csv_line, end="")
     with open(OUTPUT_FILE, "a", newline="") as f:
-        f.write(csv_line)
+        f.write(final_csv_line)
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,692 @@
+{
+    "zabbix_export": {
+        "version": "7.2",
+        "template_groups": [
+            {
+                "uuid": "846977d1dfed4968bc5f8bdb363285bc",
+                "name": "Templates/Operating systems"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "9f58ba88f6114b8485a83337e5508ef9",
+                "template": "Host Anomaly Detection - Gather Dataset",
+                "name": "Host Anomaly Detection - Gather Dataset",
+                "groups": [
+                    {
+                        "name": "Templates/Operating systems"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "214a1058927845feb6e37a9bbc2b70a7",
+                        "name": "CPU Process Top 1 Name",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.process.top.1.name",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].3"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "96bfd7ce7e2247a098757296ace19ec5",
+                        "name": "CPU Process Top 1 Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.process.top.1.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].4"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "f59c9cae2e2a4abd937164345cb958c0",
+                        "name": "CPU Process Top 2 Name",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.process.top.2.name",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].5"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "f60a00acb5d14e0bb7bfdd9a360a4ca4",
+                        "name": "CPU Process Top 2 Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.process.top.2.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].6"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "e9c2f09df7fe40f8adda257c00b3706c",
+                        "name": "CPU Process Top 3 Name",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.process.top.3.name",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].7"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "0ee3c0076cd94044b33cf2edea7b0c47",
+                        "name": "CPU Process Top 3 Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.process.top.3.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].8"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "61bf78eaac0d43b0b932726f577e8b86",
+                        "name": "CPU Process Top 4 Name",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.process.top.4.name",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].9"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "b994b069e9c84117ae0f067389b15f57",
+                        "name": "CPU Process Top 4 Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.process.top.4.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].10"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "e774c4bf1d174f829ee5634676237664",
+                        "name": "CPU Process Top 5 Name",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.process.top.5.name",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].11"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "5651efdf12a74863936430a82c20dbf7",
+                        "name": "CPU Process Top 5 Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.process.top.5.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].12"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "fc74ac3ffde94de885ccd502dcf38bf1",
+                        "name": "CPU Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.cpu.usage",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].2"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "b990ede5b84840f3a0707b46024abee4",
+                        "name": "MEM Process Top 1 Name",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.process.top.1.name",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].14"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "dd62becbc6034f77801cfcf9ff57e7e5",
+                        "name": "MEM Process Top 1 Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.process.top.1.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].15"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "17d56aed1d4f48d190aaf6c3ac4e0116",
+                        "name": "MEM Process Top 2 Name",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.process.top.2.name",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].16"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "ee3a8e2a15d4421c9f02fdd97bef2f0f",
+                        "name": "MEM Process Top 2 Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.process.top.2.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].17"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "c0b07ad120724a96bc74a43370e9e8a8",
+                        "name": "MEM Process Top 3 Name",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.process.top.3.name",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].18"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "b878fffc50fb4871bdbea429f37dffc2",
+                        "name": "MEM Process Top 3 Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.process.top.3.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].19"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "70243ce6279247eca5438c81e62e09bb",
+                        "name": "MEM Process Top 4 Name",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.process.top.4.name",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].20"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "87326b0d3f664bfb8374395013e6dc62",
+                        "name": "MEM Process Top 4 Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.process.top.4.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].21"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "deb9be31c9314dd1842a91d9fff35354",
+                        "name": "MEM Process Top 5 Name",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.process.top.5.name",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].22"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "33fc6eee1f7c47a79a71dccbfaa87c75",
+                        "name": "MEM Process Top 5 Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.process.top.5.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].23"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "643b516386474901a4243306d527b9d8",
+                        "name": "MEM Usage",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.mem.usage",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].13"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "c95b64ab945a4a028ff32e4b72f62d04",
+                        "name": "Nginx Active Connections",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.nginx.active_connections",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].24"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "58d156f882d743638efbb41005e770ff",
+                        "name": "Nginx Request per Second",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.nginx.request_per_second",
+                        "value_type": "FLOAT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].25"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "bb97922e218748e2970ae5f8b5640ab0",
+                        "name": "Timestamp",
+                        "type": "DEPENDENT",
+                        "key": "host_anomaly_detection.timestamp",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "CSV_TO_JSON",
+                                "parameters": [
+                                    ";",
+                                    "\"",
+                                    "0"
+                                ]
+                            },
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$[0].1"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]"
+                        }
+                    },
+                    {
+                        "uuid": "b5079b53512d45e68cc66297db871c75",
+                        "name": "Python Scipt to Scrape",
+                        "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/script.py]",
+                        "delay": "15s",
+                        "value_type": "TEXT"
+                    }
+                ]
+            }
+        ]
+    }
+}
