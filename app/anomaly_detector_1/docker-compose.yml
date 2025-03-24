@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build:
@@ -15,12 +13,7 @@ services:
     environment:
       - TZ=UTC
       - LOG_LEVEL=INFO
-    command: >
-      python app.py --api 
-      --host 0.0.0.0 
-      --port 5000 
-      --model-dir /app/models 
-      --log-level INFO
+    command: --api --host 0.0.0.0 --port 5000 --model-dir /app/models --model-prefix 00
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
       interval: 30s
