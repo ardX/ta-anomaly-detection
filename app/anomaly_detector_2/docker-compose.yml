@@ -1,0 +1,14 @@
+version: '3'
+services:
+  anomaly-detector-2:
+    build: .
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./models:/app/models
+    environment:
+      - MODEL_DIR=/app/models
+      - CUDA_VISIBLE_DEVICES=-1
+      - TF_CPP_MIN_LOG_LEVEL=3
+      - TF_ENABLE_ONEDNN_OPTS=0
+    restart: unless-stopped

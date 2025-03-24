@@ -149,7 +149,7 @@ def check_anomaly(csv_row):
         )
         response.raise_for_status()
         result = response.json()
-        return result.get('is_anomaly', False)
+        return result['anomaly_detection']['is_anomaly']
     except requests.RequestException as e:
         print(f"Error calling anomaly detection API: {e}")
         return None

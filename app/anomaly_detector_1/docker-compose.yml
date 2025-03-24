@@ -1,6 +1,5 @@
-version: "3"
 services:
-  anomaly-detector:
+  anomaly-detector-1:
     build: .
     ports:
       - "5000:5000"
@@ -8,5 +7,7 @@ services:
       - ./models:/app/models
     environment:
       - MODEL_DIR=/app/models
+      - CUDA_VISIBLE_DEVICES=-1
+      - TF_CPP_MIN_LOG_LEVEL=3
+      - TF_ENABLE_ONEDNN_OPTS=0
     restart: unless-stopped
-    command: python anomaly_detector.py --api --port 5000 --model-dir /app/models

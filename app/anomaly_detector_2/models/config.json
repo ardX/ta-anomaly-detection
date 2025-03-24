@@ -1,0 +1,38 @@
+{
+    "model_type": "autoencoder",
+    "threshold": 0.06237206889904819,
+    "numerical_features": [
+        "cpu_usage",
+        "top_1_cpu_proc_usage",
+        "top_2_cpu_proc_usage",
+        "top_3_cpu_proc_usage",
+        "top_4_cpu_proc_usage",
+        "top_5_cpu_proc_usage",
+        "mem_usage",
+        "top_1_mem_proc_usage",
+        "top_2_mem_proc_usage",
+        "top_3_mem_proc_usage",
+        "top_4_mem_proc_usage",
+        "top_5_mem_proc_usage",
+        "nginx_active_connections",
+        "nginx_rps"
+    ],
+    "feature_indices": {
+        "cpu_usage": 0,
+        "top_1_cpu_proc_usage": 1,
+        "top_2_cpu_proc_usage": 2,
+        "top_3_cpu_proc_usage": 3,
+        "top_4_cpu_proc_usage": 4,
+        "top_5_cpu_proc_usage": 5,
+        "mem_usage": 6,
+        "top_1_mem_proc_usage": 7,
+        "top_2_mem_proc_usage": 8,
+        "top_3_mem_proc_usage": 9,
+        "top_4_mem_proc_usage": 10,
+        "top_5_mem_proc_usage": 11,
+        "nginx_active_connections": 12,
+        "nginx_rps": 13
+    },
+    "created_at": "2025-03-24T03:23:22.381342",
+    "evaluation": {}
+}
