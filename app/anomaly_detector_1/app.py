@@ -216,35 +216,37 @@ def load_models(model_dir, model_prefix=""):
 
     Parameters:
     - model_dir: Directory containing the models
-    - model_prefix: Optional prefix for model files (for loading different model versions)
+    - model_prefix: Optional subdirectory or prefix for model files
 
     Returns:
     - Dictionary containing loaded models and components
     """
     try:
-        # Determine file paths with optional prefix
-        autoencoder_path = f'{model_dir}/{model_prefix}/autoencoder_model.h5'
-        threshold_path = f'{model_dir}/{model_prefix}/anomaly_threshold.npy'
-        lstm_path = f'{model_dir}/{model_prefix}/lstm_model.h5'
-        seq_length_path = f'{model_dir}/{model_prefix}/seq_length.txt'
-        scaler_path = f'{model_dir}/{model_prefix}/scaler.pkl'
+        # Handle model_prefix as a subdirectory if it's not empty
+        if model_prefix:
+            model_path = f'{model_dir}/{model_prefix}'
+        else:
+            model_path = model_dir
+
+        # Determine file paths within the model directory/subdirectory
+        autoencoder_path = f'{model_path}/autoencoder_model.h5'
+        threshold_path = f'{model_path}/anomaly_threshold.npy'
+        lstm_path = f'{model_path}/lstm_model.h5'
+        seq_length_path = f'{model_path}/seq_length.txt'
+        scaler_path = f'{model_path}/scaler.pkl'
         
-        # Load autoencoder and threshold
+        # Load models and components
         autoencoder = load_model(autoencoder_path)
         threshold = np.load(threshold_path)
-
-        # Load LSTM model
         lstm_model = load_model(lstm_path)
-
-        # Load sequence length
+        
         with open(seq_length_path, 'r') as f:
             seq_length = int(f.read().strip())
-
-        # Load scaler
+            
         with open(scaler_path, 'rb') as f:
             scaler = pickle.load(f)
 
-        logger.info(f"Models successfully loaded from {model_dir} with prefix '{model_prefix}'")
+        logger.info(f"Models successfully loaded from {model_path}")
 
         return {
             'autoencoder': autoencoder,
