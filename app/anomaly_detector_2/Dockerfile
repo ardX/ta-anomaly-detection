@@ -7,7 +7,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY app/ .
+COPY . .
 
 # Environment variables to disable GPU and reduce TensorFlow warnings
 ENV CUDA_VISIBLE_DEVICES="-1"
