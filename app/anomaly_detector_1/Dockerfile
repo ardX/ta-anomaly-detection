@@ -2,23 +2,33 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Install dependencies
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements file
 COPY requirements.txt .
+
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY app/ .
+COPY app.py .
 
-# Create directory for models
-RUN mkdir -p /app/models
+# Create directories for models and logs
+RUN mkdir -p /app/models /app/logs
 
-# Environment variables to disable GPU and reduce TensorFlow warnings
-ENV CUDA_VISIBLE_DEVICES="-1"
-ENV TF_CPP_MIN_LOG_LEVEL="3"
-ENV TF_ENABLE_ONEDNN_OPTS="0"
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV TF_CPP_MIN_LOG_LEVEL=3
 
 # Expose port
 EXPOSE 5000
 
-# Run the API server
-CMD ["python", "anomaly_detector.py", "--api", "--port", "5000", "--model-dir", "/app/models"]
+# Set entrypoint
+ENTRYPOINT ["python", "app.py"]
+
+# Default command (if not overridden in docker-compose)
+CMD ["--api", "--host", "0.0.0.0", "--port", "5000", "--model-dir", "/app/models"]
