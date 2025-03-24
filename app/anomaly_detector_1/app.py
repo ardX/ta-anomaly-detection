@@ -520,6 +520,11 @@ def detect_anomaly_api():
                 'confidence': result['lstm_confidence']
             }
 
+        if result['is_anomaly']:
+            logger.info(f"Anomaly detected! Timestamp: {parsed_data.get('timestamp', 'unknown')} | Error: {result['reconstruction_error']:.4f} | Threshold: {result['threshold']:.4f}")
+        else:
+            logger.info(f"Normal condition. Timestamp: {parsed_data.get('timestamp', 'unknown')} | Error: {result['reconstruction_error']:.4f} | Threshold: {result['threshold']:.4f}")
+
         return jsonify(response)
 
     except Exception as e:
