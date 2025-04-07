@@ -709,7 +709,853 @@
                         "name": "Python Scipt to Scrape",
                         "key": "system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/anomaly_detector.py]",
                         "delay": "15s",
-                        "value_type": "TEXT"
+                        "value_type": "TEXT",
+                        "triggers": [
+                            {
+                                "uuid": "8a27b267b61b4f6fbe10d75da9bb7aab",
+                                "expression": "right(last(/Host Anomaly Detection - Detecting Anomalies/system.run[sudo python3 /etc/zabbix/templates/host_anomaly_detection/anomaly_detector.py]),1)=1",
+                                "recovery_mode": "NONE",
+                                "name": "Anomaly Detected",
+                                "priority": "HIGH",
+                                "type": "MULTIPLE",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    }
+                ],
+                "dashboards": [
+                    {
+                        "uuid": "f23c974d495741b6ad591971ead6c610",
+                        "name": "VM Monitoring",
+                        "pages": [
+                            {
+                                "widgets": [
+                                    {
+                                        "type": "problemsbysv",
+                                        "name": "Total Anomaly Detected",
+                                        "width": "18",
+                                        "height": "3",
+                                        "fields": [
+                                            {
+                                                "type": "STRING",
+                                                "name": "reference",
+                                                "value": "ZKVAW"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "severities.0",
+                                                "value": "4"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "show_opdata",
+                                                "value": "2"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "show_suppressed",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "show_timeline",
+                                                "value": "0"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "tophosts",
+                                        "name": "Top hosts by CPU Usage %",
+                                        "y": "3",
+                                        "width": "36",
+                                        "height": "4",
+                                        "fields": [
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "column",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.0.data",
+                                                "value": "2"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.0.item",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.0.name",
+                                                "value": "Host"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.0.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.1.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.1.display",
+                                                "value": "3"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.item",
+                                                "value": "CPU Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.max",
+                                                "value": "100"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.min",
+                                                "value": "0"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.name",
+                                                "value": "Load in %"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.2.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.2.display",
+                                                "value": "6"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.2.item",
+                                                "value": "CPU Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.2.name",
+                                                "value": "Load avg"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.2.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.3.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.3.display_value_as",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.3.item",
+                                                "value": "CPU Process Top 1 Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.3.name",
+                                                "value": "Top 1 CPU Process Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.3.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.4.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.4.item",
+                                                "value": "CPU Process Top 1 Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.4.name",
+                                                "value": "Top 1 CPU Process Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.4.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.5.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.5.display_value_as",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.5.item",
+                                                "value": "CPU Process Top 2 Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.5.name",
+                                                "value": "Top 2 CPU Process Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.5.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.6.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.6.item",
+                                                "value": "CPU Process Top 2 Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.6.name",
+                                                "value": "Top 2 CPU Process Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.6.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.7.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.7.display_value_as",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.7.item",
+                                                "value": "CPU Process Top 3 Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.7.name",
+                                                "value": "Top 3 CPU Process Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.7.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.8.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.8.item",
+                                                "value": "CPU Process Top 3 Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.8.name",
+                                                "value": "Top 3 CPU Process Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.8.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.9.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.9.display_value_as",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.9.item",
+                                                "value": "CPU Process Top 4 Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.9.name",
+                                                "value": "Top 4 CPU Process Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.9.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.10.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.10.item",
+                                                "value": "CPU Process Top 4 Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.10.name",
+                                                "value": "Top 4 CPU Process Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.10.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.11.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.11.display_value_as",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.11.item",
+                                                "value": "CPU Process Top 5 Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.11.name",
+                                                "value": "Top 5 CPU Process Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.11.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.12.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.12.item",
+                                                "value": "CPU Process Top 5 Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.12.name",
+                                                "value": "Top 5 CPU Process Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.12.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.color.0",
+                                                "value": "AED581"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.color.1",
+                                                "value": "FFD54F"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.color.2",
+                                                "value": "FF8A65"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.threshold.0",
+                                                "value": "30"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.threshold.1",
+                                                "value": "60"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.threshold.2",
+                                                "value": "80"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "reference",
+                                                "value": "ELTII"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "problems",
+                                        "name": "Anomaly",
+                                        "y": "7",
+                                        "width": "72",
+                                        "height": "8",
+                                        "fields": [
+                                            {
+                                                "type": "STRING",
+                                                "name": "reference",
+                                                "value": "TBVGE"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "tophosts",
+                                        "name": "Top nginx operation by RPS",
+                                        "x": "18",
+                                        "width": "18",
+                                        "height": "3",
+                                        "fields": [
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.0.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.0.item",
+                                                "value": "Nginx Active Connections"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.0.name",
+                                                "value": "Active Connections"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.0.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.1.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.item",
+                                                "value": "Nginx Request per Second"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.name",
+                                                "value": "Request per Second"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "reference",
+                                                "value": "ACVMB"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "hostavail",
+                                        "x": "36",
+                                        "width": "36",
+                                        "height": "3",
+                                        "fields": [
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "interface_type.0",
+                                                "value": "1"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "tophosts",
+                                        "name": "Top hosts by MEM Usage %",
+                                        "x": "36",
+                                        "y": "3",
+                                        "width": "36",
+                                        "height": "4",
+                                        "fields": [
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "column",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.0.data",
+                                                "value": "2"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.0.item",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.0.name",
+                                                "value": "Host"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.0.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.1.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.1.display",
+                                                "value": "3"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.item",
+                                                "value": "MEM Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.max",
+                                                "value": "100"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.min",
+                                                "value": "0"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.name",
+                                                "value": "Load in %"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.1.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.2.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.2.display",
+                                                "value": "6"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.2.item",
+                                                "value": "MEM Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.2.name",
+                                                "value": "Load avg"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.2.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.3.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.3.display_value_as",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.3.item",
+                                                "value": "MEM Process Top 1 Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.3.name",
+                                                "value": "Top 1 MEM Process Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.3.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.4.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.4.item",
+                                                "value": "MEM Process Top 1 Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.4.name",
+                                                "value": "Top 1 MEM Process Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.4.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.5.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.5.display_value_as",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.5.item",
+                                                "value": "MEM Process Top 2 Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.5.name",
+                                                "value": "Top 2 MEM Process Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.5.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.6.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.6.item",
+                                                "value": "MEM Process Top 2 Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.6.name",
+                                                "value": "Top 2 MEM Process Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.6.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.7.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.7.display_value_as",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.7.item",
+                                                "value": "MEM Process Top 3 Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.7.name",
+                                                "value": "Top 3 MEM Process Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.7.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.8.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.8.item",
+                                                "value": "MEM Process Top 3 Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.8.name",
+                                                "value": "Top 3 MEM Process Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.8.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.9.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.9.display_value_as",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.9.item",
+                                                "value": "MEM Process Top 4 Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.9.name",
+                                                "value": "Top 4 MEM Process Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.9.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.10.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.10.item",
+                                                "value": "MEM Process Top 4 Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.10.name",
+                                                "value": "Top 4 MEM Process Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.10.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.11.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.11.display_value_as",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.11.item",
+                                                "value": "MEM Process Top 5 Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.11.name",
+                                                "value": "Top 5 MEM Process Name"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.11.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "INTEGER",
+                                                "name": "columns.12.data",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.12.item",
+                                                "value": "MEM Process Top 5 Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.12.name",
+                                                "value": "Top 5 MEM Process Usage"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columns.12.text",
+                                                "value": ""
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.color.0",
+                                                "value": "AED581"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.color.1",
+                                                "value": "FFD54F"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.color.2",
+                                                "value": "FF8A65"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.threshold.0",
+                                                "value": "30"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.threshold.1",
+                                                "value": "60"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "columnsthresholds.1.threshold.2",
+                                                "value": "80"
+                                            },
+                                            {
+                                                "type": "STRING",
+                                                "name": "reference",
+                                                "value": "GOYJG"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]
             }
