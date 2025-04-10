@@ -57,57 +57,51 @@ var Telegram = {
   }
 };
 
-// Function to format CSV message into readable text
 function formatTelegramMessage(csvData) {
-  // Define headers
-  var headers = [
-      "timestamp",
-      "cpu_usage",
-      "top_1_cpu_proc_name",
-      "top_1_cpu_proc_usage",
-      "top_2_cpu_proc_name",
-      "top_2_cpu_proc_usage",
-      "top_3_cpu_proc_name",
-      "top_3_cpu_proc_usage",
-      "top_4_cpu_proc_name",
-      "top_4_cpu_proc_usage",
-      "top_5_cpu_proc_name",
-      "top_5_cpu_proc_usage",
-      "mem_usage",
-      "top_1_mem_proc_name",
-      "top_1_mem_proc_usage",
-      "top_2_mem_proc_name",
-      "top_2_mem_proc_usage",
-      "top_3_mem_proc_name",
-      "top_3_mem_proc_usage",
-      "top_4_mem_proc_name",
-      "top_4_mem_proc_usage",
-      "top_5_mem_proc_name",
-      "top_5_mem_proc_usage",
-      "nginx_active_connections",
-      "nginx_rps",
-      "is_anomaly"
-  ];
-  
-  // Split the CSV data by semicolons
-  var values = csvData.split(';');
-  var message = "";
-  
-  // Create a formatted message
-  for (var i = 0; i < Math.min(headers.length, values.length); i++) {
-      // Format the header with proper capitalization and spaces
-      var headerParts = headers[i].split('_');
-      var formattedHeader = "";
+  try {
+      var values = csvData.split(';');
+      var message = "";
       
-      for (var j = 0; j < headerParts.length; j++) {
-          formattedHeader += headerParts[j].charAt(0).toUpperCase() + headerParts[j].slice(1) + " ";
+      var timestamp = values[0];
+      var date = new Date(timestamp);
+
+      message += date.toLocaleDateString()+ " " + date.toLocaleTimeString() + "\n\n";
+      
+      message += "Penggunaan CPU: " + values[1] + "%\n";
+      message += "Penggunaan Memory: " + values[12] + "%\n\n";
+      
+      message += "Penggunaan Proses Tertinggi pada CPU:\n";
+      for (var i = 1; i <= 5; i++) {
+          var procNameIndex = 2 + (i-1)*2;
+          var procUsageIndex = 3 + (i-1)*2;
+          if (procNameIndex < values.length && procUsageIndex < values.length) {
+              message += i + ". " + values[procNameIndex] + " = " + values[procUsageIndex] + "%\n";
+          }
       }
       
-      formattedHeader = formattedHeader.trim();
-      message += formattedHeader + ": " + values[i] + "\n";
+      message += "\n";
+      
+      message += "Penggunaan Proses Tertinggi pada Memory:\n";
+      for (var i = 1; i <= 5; i++) {
+          var procNameIndex = 13 + (i-1)*2;
+          var procUsageIndex = 14 + (i-1)*2;
+          if (procNameIndex < values.length && procUsageIndex < values.length) {
+              message += i + ". " + values[procNameIndex] + " = " + values[procUsageIndex] + "%\n";
+          }
+      }
+      
+      message += "\n";
+      
+      var nginxConnections = values[23] || "0";
+      var nginxRps = values[24] || "0";
+      message += "Jumlah koneksi aktif pada webserver: " + nginxConnections + "\n";
+      message += "Jumlah permintaan per detik di webserver: " + nginxRps;
+      
+      return message;
+  } catch (error) {
+      Zabbix.log(3, '[Telegram Webhook] Error formatting message: ' + error);
+      return "Error formatting message. Check Zabbix logs for details.";
   }
-  
-  return message;
 }
 
 try {
@@ -119,20 +113,23 @@ try {
   if (params.HTTPProxy) {
       Telegram.proxy = params.HTTPProxy;
   } 
-  params.ParseMode = params.ParseMode.toLowerCase();
   
-  if (['markdown', 'html', 'markdownv2'].indexOf(params.ParseMode) !== -1) {
-      Telegram.parse_mode = params.ParseMode;
+  if (typeof params.ParseMode !== 'undefined') {
+      params.ParseMode = params.ParseMode.toLowerCase();
+      if (['markdown', 'html', 'markdownv2'].indexOf(params.ParseMode) !== -1) {
+          Telegram.parse_mode = params.ParseMode;
+      }
   }
+  
   Telegram.to = params.To;
   
-  // Format the message using the formatTelegramMessage function
   var formattedMessage = formatTelegramMessage(params.Message);
-  Telegram.message = params.Subject + '\n' + formattedMessage;
+  Telegram.message = formattedMessage;
   
-  if (['markdown', 'html', 'markdownv2'].indexOf(params.ParseMode) !== -1) {
-      Telegram.message = Telegram.escapeMarkup(Telegram.message, params.ParseMode);
+  if (Telegram.parse_mode !== null) {
+      Telegram.message = Telegram.escapeMarkup(Telegram.message, Telegram.parse_mode);
   }
+  
   Telegram.sendMessage();
   return 'OK';
 }
